@@ -1,9 +1,3 @@
--- Création de la base de données
-CREATE DATABASE IF NOT EXISTS site_db; 
-CHARACTER SET utf8mb4 
-COLLATE utf8mb4_unicode_ci;
-
-USE solidaire;
 
 -- Table users
 CREATE TABLE IF NOT EXISTS users (
