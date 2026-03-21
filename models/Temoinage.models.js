@@ -1,53 +1,44 @@
 module.exports = (sequelize, DataTypes) => {
-  const Temoignage = sequelize.define('Temoignage', {
-    poste: {
-      type: DataTypes.STRING,
-      allowNull: false
+  const Temoignage = sequelize.define(
+    "Temoignage",
+    {
+      poste: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      message: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      photo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      service_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: "services",
+          key: "id",
+        },
+      },
     },
-    message: {
-      type: DataTypes.TEXT,
-      allowNull: false
+    {
+      tableName: "temoignages",
+      underscored: true,
+      timestamps: true,
     },
-    photo: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    enterprise_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'entreprises',
-        key: 'id'
-      }
-    },
-    service_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'services',
-        key: 'id'
-      }
-    }
-  }, {
-    tableName: "temoignages",
-    underscored: true,
-    timestamps: true
-  });
+  );
 
   Temoignage.associate = (models) => {
-    Temoignage.belongsTo(models.Enterprise, {
-      foreignKey: 'enterprise_id',
-      as: 'enterprise'
-    });
-    
     Temoignage.belongsTo(models.Service, {
-      foreignKey: 'service_id',
-      as: 'service'
+      foreignKey: "service_id",
+      as: "service",
     });
-    
+
     Temoignage.hasMany(models.Notifications, {
-      foreignKey: 'temoignage_id',
-      as: 'notifications'
+      foreignKey: "temoignage_id",
+      as: "notifications",
     });
   };
 

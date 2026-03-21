@@ -4,36 +4,40 @@ module.exports = (sequelize, DataTypes) => {
     {
       nom: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       prenom: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       nombre_visite: {
         type: DataTypes.INTEGER, // Correction: NUMBER -> INTEGER
-        defaultValue: 0
+        defaultValue: 0,
       },
       email: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
         validate: {
-          isEmail: true
-        }
+          isEmail: true,
+        },
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       telephone: {
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false
+        allowNull: false,
       },
       role: {
-        type: DataTypes.ENUM("ADMIN", "VISITEUR", "SUPER_ADMIN"),
-        defaultValue: "VISITEUR"
+        type: DataTypes.ENUM("ADMIN", "VISITEUR"),
+        defaultValue: "VISITEUR",
       },
       code_verification: DataTypes.STRING,
       reset_code_expiry: DataTypes.DATE,
@@ -49,19 +53,19 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: "users",
       underscored: true,
-      timestamps: true, 
-    }
+      timestamps: true,
+    },
   );
 
   Users.associate = (models) => {
     Users.hasMany(models.Contact, {
-      foreignKey: 'user_id',
-      as: 'contacts'
+      foreignKey: "user_id",
+      as: "contacts",
     });
-    
+
     Users.hasMany(models.Notifications, {
-      foreignKey: 'user_id',
-      as: 'notifications'
+      foreignKey: "user_id",
+      as: "notifications",
     });
   };
 

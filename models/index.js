@@ -12,6 +12,7 @@ db.ServiceSolution = require("./ServiceSolution.models")(sequelize, DataTypes);
 db.Temoignage = require("./Temoinage.models")(sequelize, DataTypes); 
 db.Users = require("./Users.models")(sequelize, DataTypes);
 db.Video = require("./Video.models")(sequelize, DataTypes);
+db.Token = require("./token.model")(sequelize, DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
