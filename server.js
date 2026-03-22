@@ -37,6 +37,8 @@ app.use("/api/auth", require("./routes/auth.routes"));
 app.use(verifyToken);
 app.use(updateActivity);
 
+app.unsubscribe("/api/users", require("./routes/user.routes"));
+
 require("./models");
 
 app.use("/api/exemple", require("./routes/exemple.routes"));

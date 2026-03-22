@@ -62,6 +62,8 @@ exports.inscription = async (req, res) => {
       { registrationDate: new Date() },
     );
 
+    const token = generateAccessToken(user);
+
     const userData = await Users.findByPk(user.id, {
       attributes: { exclude: ["password"] },
     });
@@ -69,6 +71,7 @@ exports.inscription = async (req, res) => {
     res.status(201).json({
       message: "Inscription réussie",
       user: userData,
+      token
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
