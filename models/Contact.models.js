@@ -9,14 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       message: DataTypes.TEXT,
       fonction: DataTypes.STRING,
       objet: DataTypes.STRING,
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-          model: "users",
-          key: "id",
-        },
-      },
     },
     {
       tableName: "contacts",

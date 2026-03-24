@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.NOW
     },
     type: {
-      type: DataTypes.ENUM('info', 'success', 'warning', 'error', 'alert', 'message', 'update'),
+      type: DataTypes.ENUM('info', 'success', 'warning', 'temoignage', 'error', 'alert', 'message', 'update'),
       allowNull: false
     },
     lue: {

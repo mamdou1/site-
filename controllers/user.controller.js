@@ -44,13 +44,35 @@ exports.createUser = async (req, res, next) => {
 // =========================
 exports.getAllUsers = async (req, res, next) => {
     try {
-        const users = await Users.findAll({
-            attributes: { exclude: ["password"] }
-        });
+        const { limit = 10, offset = 0, search } = req.query;
+
+        let where = {};
+        if (search) {
+            where = {
+                [Op.or]: [
+                    { nom: { [Op.like]: `%${search}%` } },
+                    { prenom: { [Op.like]: `%${search}%` } },
+                    { username: { [Op.like]: `%${search}%` } },
+                    { telephone: { [Op.like]: `%${search}%` } },
+                    { email: { [Op.like]: `%${search}%` } },
+                ],
+            };
+        }
+
+        const users = await Users.findAndCountAll({
+            where,
+            attributes: { exclude: ["password"] },
+            limit: parseInt(limit),
+            offset: parseInt(offset),
+            order: [["createdAt", "DESC"]],
+        })
 
         res.json({
             success: true,
-            data: users
+            total: users.count,
+            limit: parseInt(limit),
+            offset: parseInt(offset),
+            data: users.rows
         });
 
     } catch (error) {

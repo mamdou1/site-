@@ -12,20 +12,20 @@ module.exports = (sequelize, DataTypes) => {
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       prix: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
+        allowNull: true,
       },
       duree: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         comment: "Durée en jours",
       },
       technologie: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {

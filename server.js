@@ -40,6 +40,8 @@ app.use(updateActivity);
 require("./models");
 
 app.use("/api/users", require("./routes/user.routes"));
+app.use("/api/contact", require("./routes/contact.routes"));
+app.use("/api/temoignages", require("./routes/temoignage.routes"));
 
 app.use("/api/exemple", require("./routes/exemple.routes"));
 app.use("/api/service", require("./routes/service.routes"));
@@ -57,7 +59,7 @@ sequelize
   .then(async () => {
     console.log("✅ Connexion MySQL réussie");
 
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     // 4️⃣ Lancer le serveur
     app.listen(process.env.PORT, () => {
       console.log(`🚀 Serveur lancé sur le port ${process.env.PORT}`);

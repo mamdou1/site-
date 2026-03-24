@@ -12,7 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       photo: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      statut: {
+        type: DataTypes.ENUM("EN_ATTENTE", "VALIDER", "REJETTER"),
         allowNull: false,
+        defaultValue: "EN_ATTENTE",
       },
       service_id: {
         type: DataTypes.INTEGER,
