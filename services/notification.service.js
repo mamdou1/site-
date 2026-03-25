@@ -12,9 +12,9 @@ class NotificationService {
         type,
         title,
         message,
-        metadata,
+        metadata: JSON.stringify(metadata), // ✅ conversion en string
         lue: false,
-        date: new Date()
+        date: new Date(),
       });
       return notification;
     } catch (error) {
@@ -34,7 +34,7 @@ class NotificationService {
         message,
         metadata,
         lue: false,
-        date: new Date()
+        date: new Date(),
       });
       return notification;
     } catch (error) {

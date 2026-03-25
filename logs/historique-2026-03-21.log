@@ -10,3 +10,5 @@
 2026-03-21 18:24:07 [INFO] ✅ Logger initialisé avec succès 
 2026-03-21 18:24:11 [INFO] HISTORIQUE {"user_id":1,"action":"login","resource":"auth/connexion","method":"POST","path":"/api/auth/connexion","status":200,"ip":"::1","user_agent":"PostmanRuntime/7.52.0"}
 2026-03-21 18:24:11 [ERROR] Échec sauvegarde base de données {"error":"Cannot read properties of undefined (reading 'create')","payload":{"user_id":1,"action":"login","resource":"auth/connexion","method":"POST","path":"/api/auth/connexion","status":200,"ip":"::1","user_agent":"PostmanRuntime/7.52.0"}}
+2026-03-21 18:51:11 [INFO] ✅ Logger initialisé avec succès 
+2026-03-21 18:51:40 [INFO] HISTORIQUE {"user_id":1,"action":"login","resource":"auth/connexion","method":"POST","path":"/api/auth/connexion","status":200,"ip":"::1","user_agent":"PostmanRuntime/7.52.0"}
