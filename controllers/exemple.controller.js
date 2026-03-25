@@ -1,5 +1,6 @@
 // controllers/site.controller.js
 const { Site, Salle } = require("../models");
+const NotificationService = require("../services/notification.service");
 
 /**
  * Créer un nouveau site
@@ -7,6 +8,24 @@ const { Site, Salle } = require("../models");
 exports.create = async (req, res) => {
   try {
     const data = await Site.create(req.body);
+    //(notifyuser) recupère l'tilisateur de la base de donnée (nous)
+
+    await NotificationService.notifyUser(
+      user.id,
+      "success",
+      "Bienvenue sur la plateforme",
+      `Bonjour ${nom}, votre compte a été créé avec succès.`,
+      { registrationDate: new Date() },
+    );
+
+    //Et (notify) ne récupère aucun utilisatieur
+
+    await NotificationService.notifyUser(
+      "success",
+      "Bienvenue sur la plateforme",
+      `Bonjour ${nom}, votre compte a été créé avec succès.`,
+      { registrationDate: new Date() },
+    );
     res.status(201).json(data);
   } catch (error) {
     res.status(500).json({

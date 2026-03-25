@@ -71,7 +71,7 @@ exports.inscription = async (req, res) => {
     res.status(201).json({
       message: "Inscription réussie",
       user: userData,
-      token
+      token,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
