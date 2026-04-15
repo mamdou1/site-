@@ -12,9 +12,11 @@ const {
   generateRefreshToken,
   verifyToken,
 } = require("../utils/token.utils");
-
+console.log('🚨🚨🚨 FICHIER auth.controller.js CHARGÉ 🚨🚨🚨');
 // 🔹 Inscription
 exports.inscription = async (req, res) => {
+  console.log('🔵🔵🔵 FONCTION CONNEXION APPELLÉE 🔵🔵🔵');
+  console.log('Body reçu:', req.body);
   try {
     const {
       nom,
@@ -78,12 +80,14 @@ exports.inscription = async (req, res) => {
 // 🔹 Connexion
 exports.connexion = async (req, res) => {
   try {
-    const { username, password } = req.body;
-
-    // Recherche par email ou téléphone
+    const { identifier, password } = req.body;
+     console.log('Identifier:', identifier);
     const user = await Users.findOne({
       where: {
-        [Op.or]: [{ username: username }],
+        [Op.or]: [
+          { username: identifier },
+          { email: identifier },
+        ],
       },
     });
 

@@ -1,16 +1,29 @@
+// middlewares/auth.middleware.js
 const jwt = require("jsonwebtoken");
 
 exports.verifyToken = (req, res, next) => {
+  console.log('🔍 Middleware verifyToken exécuté pour:', req.method, req.originalUrl);
+  
   const authHeader = req.headers["authorization"];
+  console.log('🔍 Authorization header:', authHeader);
+  
   const token = authHeader && authHeader.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "Token manquant" });
+  console.log('🔍 Token extrait:', token ? token.substring(0, 20) + '...' : 'AUCUN');
+  
+  if (!token) {
+    console.log('❌ Token manquant pour:', req.originalUrl);
+    return res.status(401).json({ message: "Token manquant" });
+  }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(403).json({ message: "Token invalide" });
+    if (err) {
+      console.log('❌ Token invalide:', err.message);
+      return res.status(403).json({ message: "Token invalide" });
+    }
 
-    // 🔧 Adapter les champs
+    console.log('✅ Token valide pour user:', decoded.id);
     req.user = {
-      id: decoded.id, // correspond à user._id
+      id: decoded.id,
       role: decoded.role,
     };
 
